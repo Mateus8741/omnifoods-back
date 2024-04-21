@@ -1,24 +1,14 @@
 import fastify, { FastifyInstance } from "fastify";
-import { prisma } from "./prisma/prisma-client";
-import { productSchema } from "./schemas/productSchema";
+import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
+import { createProduct } from "./routes/createProduct";
+import { listProducts } from "./routes/listProducts";
 
 const app: FastifyInstance = fastify({logger: true});
 
-app.get("/product", async (request, reply) => {
-    return { hello: "world" };
-});
+app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
 
-app.post("/product", async (request, reply) => {
-    const data = productSchema.parse(request.body);
-
-    const product = await prisma.product.create({
-        data,
-    });
-
-    const message = `Produto "${product.name}" foi criado com sucesso`;
-
-    return reply.status(201).send({ product: product.name, message });
-});
+app.register(createProduct, listProducts);
 
 app.listen({
     port: 3100,
