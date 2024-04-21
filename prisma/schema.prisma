@@ -13,15 +13,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+// model Product {
+//   id          String   @id @default(uuid())
+//   title       String
+//   productName String
+//   description String
+//   ingredients String
+//   price       Float
+//   cover       String
+//   thumbnail   String
+//   createdAt   DateTime @default(now())
+//   updatedAt   DateTime @updatedAt
+// }
+
 model Product {
-  id          String   @id @default(uuid())
+  id      String   @id @default(uuid())
+  title   String
+  details Detail[]
+}
+
+model Detail {
+  id          String  @id @default(uuid())
+  product     Product @relation(fields: [productId], references: [id])
+  productId   String
   title       String
-  productName String
-  description String
-  ingredients String
   price       Float
+  description String
   cover       String
   thumbnail   String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  ingredients String
 }

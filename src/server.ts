@@ -3,7 +3,9 @@ import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod
 import { createProduct } from "./routes/createProduct";
 import { listProducts } from "./routes/listProducts";
 
-const app: FastifyInstance = fastify({logger: true});
+const app: FastifyInstance = fastify({
+    logger: true,
+});
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
