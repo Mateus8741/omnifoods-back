@@ -28,8 +28,8 @@ export async function createProduct(app: FastifyInstance) {
                                 title: detail.title,
                                 price: detail.price,
                                 description: detail.description,
-                                cover: detail.cover,
-                                thumbnail: detail.thumbnail,
+                                cover: detail.cover,             //FIXME: cover precisa vir do cloudflare
+                                thumbnail: detail.thumbnail,    //FIXME: thumbnail precisa vir do cloudflare
                                 ingredients: detail.ingredients,
                             })),
                         },
