@@ -1,5 +1,7 @@
 import fastify, { FastifyInstance } from "fastify";
 import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
+import { createOrder } from "./routes/Orders/createOrder";
+import { listOrder } from "./routes/Orders/listOrder";
 import { createProduct } from "./routes/createProduct";
 import { listProducts } from "./routes/listProducts";
 
@@ -11,6 +13,7 @@ app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
 app.register(createProduct, listProducts);
+app.register(createOrder, listOrder);
 
 app.listen({
     port: 3100,
