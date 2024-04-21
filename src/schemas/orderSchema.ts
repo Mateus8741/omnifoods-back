@@ -9,7 +9,7 @@ const ProductOrderSchema = z.object({
 const OrderSchema = z.object({
   productOrders: z.array(ProductOrderSchema),
   tableNumber: z.number(),
-  changeToOrder: z.string().optional(),
+  changeToOrder: z.string().optional().default(""),
 });
 
 export { OrderSchema, ProductOrderSchema };

@@ -14,7 +14,7 @@ export async function createOrder(app: FastifyInstance) {
         const order = await prisma.order.create({
             data: {
                 tableNumber,
-                changeToOrder: changeToOrder || "",
+                changeToOrder,
                 createdAt: new Date(),
                 productOrders: {
                     create: productOrders.map((productOrder) => ({
