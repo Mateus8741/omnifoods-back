@@ -1,10 +1,13 @@
 import { FastifyInstance } from "fastify";
+import { prisma } from "../../prisma/prisma-client";
 
 export async function listOrder(app: FastifyInstance) {
     app.get("/order", async (request, reply) => {
-        return {
-            message: "List of orders",
-        }
+        const data = await prisma.order.findMany({
+            include: { productOrders: true }
+        });
+
+        return data
     });
     
 }
