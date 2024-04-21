@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { prisma } from "../prisma/prisma-client";
+import { prisma } from "../../prisma/prisma-client";
 
 export async function listProducts(app:FastifyInstance) {
     

@@ -2,8 +2,8 @@ import fastify, { FastifyInstance } from "fastify";
 import { serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
 import { createOrder } from "./routes/Orders/createOrder";
 import { listOrder } from "./routes/Orders/listOrder";
-import { createProduct } from "./routes/createProduct";
-import { listProducts } from "./routes/listProducts";
+import { createProduct } from "./routes/Products/createProduct";
+import { listProducts } from "./routes/Products/listProducts";
 
 const app: FastifyInstance = fastify({
     logger: true,
