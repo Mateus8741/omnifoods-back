@@ -7,6 +7,8 @@ import { listProducts } from "./routes/Products/listProducts";
 import { updateProductDetails } from "./routes/Products/updateProductDetails";
 import { updateTitle } from "./routes/Products/updateTitle";
 
+import multer from "fastify-multer";
+
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 
@@ -34,6 +36,8 @@ app.register(fastifySwagger, {
 app.register(fastifySwaggerUi, {
     routePrefix: "/docs",
 })
+
+app.register(multer.contentParser);
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
