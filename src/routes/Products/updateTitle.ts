@@ -25,19 +25,16 @@ export async function updateTitle(app: FastifyInstance) {
                 return reply.status(404).send({ error: "Produto não encontrado" });
             }
 
-            const updatedTitle = await prisma.product.update({
+            await prisma.product.update({
                 where: { id: productId },
                 data: {
                     title: data.title,
                 },
-                include: {
-                    details: true,
-                },
             });
 
-            const message = `Produto "${updatedTitle.title}" foi atualizado com sucesso`;
+            const message = "Titulo do produto atualizado com sucesso";
 
-            return reply.status(200).send({ product: updatedTitle, message });
+            return reply.status(200).send({ message });
         } catch (error) {
             console.error("Erro ao atualizar o produto:", error);
             return reply.status(400).send({ error: "Erro ao atualizar o produto" });
