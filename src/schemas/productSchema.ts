@@ -11,7 +11,8 @@ import { z } from 'zod';
 // })
 
 const DetailSchema = z.object({
-  title: z.string(),
+  id: z.string().optional(),
+  name: z.string(),
   price: z.number(),
   description: z.string(),
   cover: z.string(),

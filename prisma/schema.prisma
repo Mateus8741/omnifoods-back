@@ -36,7 +36,7 @@ model Detail {
   id          String  @id @default(uuid())
   product     Product @relation(fields: [productId], references: [id])
   productId   String
-  title       String
+  name        String
   price       Float
   description String
   cover       String

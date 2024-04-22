@@ -25,7 +25,7 @@ export async function createProduct(app: FastifyInstance) {
                     data: {
                         details: {
                             create: details.map((detail) => ({
-                                title: detail.title,
+                                name: detail.name,
                                 price: detail.price,
                                 description: detail.description,
                                 cover: detail.cover,             //FIXME: cover precisa vir do cloudflare
@@ -44,7 +44,7 @@ export async function createProduct(app: FastifyInstance) {
                         title,
                         details: {
                             create: details.map((detail) => ({
-                                title: detail.title,
+                                name: detail.name,
                                 price: detail.price,
                                 description: detail.description,
                                 cover: detail.cover,

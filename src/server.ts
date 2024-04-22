@@ -4,16 +4,18 @@ import { createOrder } from "./routes/Orders/createOrder";
 import { listOrder } from "./routes/Orders/listOrder";
 import { createProduct } from "./routes/Products/createProduct";
 import { listProducts } from "./routes/Products/listProducts";
+import { updateProductDetails } from "./routes/Products/updateProductDetails";
+import { updateTitle } from "./routes/Products/updateTitle";
 
-const app: FastifyInstance = fastify({
-    logger: true,
-});
+const app: FastifyInstance = fastify();
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
 app.register(createProduct);
 app.register(listProducts);
+app.register(updateTitle);
+app.register(updateProductDetails);
 
 app.register(createOrder);
 app.register(listOrder);
