@@ -12,8 +12,11 @@ const app: FastifyInstance = fastify({
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
-app.register(createProduct, listProducts);
-app.register(createOrder, listOrder);
+app.register(createProduct);
+app.register(listProducts);
+
+app.register(createOrder);
+app.register(listOrder);
 
 app.listen({
     port: 3100,
