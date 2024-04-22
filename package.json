@@ -5,11 +5,16 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/server.ts"
+    "dev": "tsx watch src/server.ts",
+    "build": "tsup src --format esm",
+    "start": "node dist/server.mjs",
+    "db:migrate": "prisma migrate dev",
+    "db:studio": "prisma studio"
   },
   "license": "MIT",
   "devDependencies": {
     "prisma": "^5.12.1",
+    "tsup": "^8.0.2",
     "tsx": "^4.7.2",
     "typescript": "^5.4.5"
   },
