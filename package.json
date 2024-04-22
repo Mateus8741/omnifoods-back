@@ -24,6 +24,7 @@
     "@fastify/swagger-ui": "^3.0.0",
     "@prisma/client": "5.12.1",
     "fastify": "^4.26.2",
+    "fastify-multer": "^2.0.3",
     "fastify-type-provider-zod": "^1.1.9",
     "zod": "^3.22.5"
   }
