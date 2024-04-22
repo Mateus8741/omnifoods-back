@@ -17,11 +17,9 @@ export async function createOrder(app: FastifyInstance) {
                 changeToOrder,
                 createdAt: new Date(),
                 productOrders: {
-                    create: productOrders.map((productOrder) => ({
-                        productName: productOrder.productName,
-                        productPrice: productOrder.productPrice,
-                        quantity: productOrder.quantity,
-                    }))
+                    createMany: {
+                        data: productOrders
+                    }
                 }
             },
             include: {
@@ -29,7 +27,7 @@ export async function createOrder(app: FastifyInstance) {
             }
         });
 
-        const message = "Order created successfully";
+        const message = "Pedido criado com sucesso!";
 
         return reply.code(201).send({ order, message });
 
