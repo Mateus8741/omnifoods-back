@@ -1,48 +1,71 @@
 import { FastifyInstance } from "fastify";
 import multer from "fastify-multer";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
-import mime from "mime";
+import fs from "fs";
 import crypto from "node:crypto";
 import { extname } from "node:path";
 
-const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
+const allowedTypes = ["PNG", "JPEG", "JPG"];
 
-const upload = multer({
-  storage: multer.diskStorage({
-    destination: "./uploads",
-    filename: (req, file, cb) => { // basicamente renomeia para um hash
-      crypto.randomBytes(16, (err, res) => {
-        const filename = res.toString("hex") + extname(file.originalname);
-        if (err) return cb(err, filename);
+// Função para criar uma pasta se ela não existir
+const createFolderIfNotExists = (folderPath: string) => {
+  if (!fs.existsSync(folderPath)) {
+    fs.mkdirSync(folderPath, { recursive: true });
+  }
+};
 
-        return cb(null, filename);
-      });
-    },
-  }),
-  fileFilter: (request, file, cb) => { // filtra somente com arquivos permitidos
-    if (allowedTypes.includes(file.mimetype)) {
-      return cb(null, true)
-    }
-    cb(null, false);
-    return cb(
-      new Error(
-        `Apenas ${allowedTypes
-          .map((a) => mime.getExtension(a))
-          .join(", ")} são permitidos.`
-      )
-    );
+// Configuração do Multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const { fieldname } = file;
+    const uploadDir = `./uploads/${fieldname}`;
+
+    // Cria a pasta de upload se ela não existir
+    createFolderIfNotExists(uploadDir);
+    
+    cb(null, uploadDir);
+  },
+  filename: (req, file, cb) => {
+    crypto.randomBytes(16, (err, res) => {
+      const filename = res.toString("hex") + extname(file.originalname);
+      if (err) return cb(err, filename);
+      cb(null, filename);
+    });
   },
 });
 
+const upload = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    if (allowedTypes.includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error(`Apenas ${allowedTypes.join(", ")} são permitidos`));
+    }
+  },
+});
 
-export async function createFile(app: FastifyInstance) { //função em si
+export async function createFile(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
     "/files",
-    { preHandler: upload.single("image") as never }, // erro de checagem :'(
+    { preHandler: upload.fields([{ name: "Cover", maxCount: 1 }, { name: "Thumbnail", maxCount: 1 } ]) } as never,
     (request, reply) => {
-      const { file } = request as any;
+      const { files } = request as any;
 
-      return reply.code(201).send(file);
+      // Verifica se os arquivos foram enviados
+      if (!files || !files["Cover"] || !files["Thumbnail"]) {
+        return reply.code(400).send({ error: "Files not uploaded" });
+      }
+
+      const coverFile = files["Cover"][0];
+      const thumbnailFile = files["Thumbnail"][0];
+
+      // Retorna os detalhes dos arquivos enviados
+      return reply.code(201).send({
+        ok: true,
+        cover: coverFile,
+        thumbnail: thumbnailFile,
+      });
     }
   );
 }
