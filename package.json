@@ -13,6 +13,8 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/mime": "^4.0.0",
+    "@types/node": "^20.12.7",
     "prisma": "^5.12.1",
     "tsup": "^8.0.2",
     "tsx": "^4.7.2",
