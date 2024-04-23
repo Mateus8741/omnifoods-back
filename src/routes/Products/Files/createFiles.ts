@@ -26,9 +26,9 @@ const upload = multer({
     cb(null, false);
     return cb(
       new Error(
-        `Only ${allowedTypes
+        `Apenas ${allowedTypes
           .map((a) => mime.getExtension(a))
-          .join(", ")} formats are allowed`
+          .join(", ")} são permitidos.`
       )
     );
   },
