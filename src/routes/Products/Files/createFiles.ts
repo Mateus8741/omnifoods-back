@@ -5,7 +5,7 @@ import fs from "fs";
 import crypto from "node:crypto";
 import { extname } from "node:path";
 
-const allowedTypes = ["PNG", "JPEG", "JPG"];
+const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
 
 // Função para criar uma pasta se ela não existir
 const createFolderIfNotExists = (folderPath: string) => {
