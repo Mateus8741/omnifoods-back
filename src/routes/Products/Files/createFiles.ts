@@ -5,7 +5,7 @@ import mime from "mime";
 import crypto from "node:crypto";
 import { extname } from "node:path";
 
-const allowedTypes = ["image/png", "image/jpeg", "image/gif"];
+const allowedTypes = ["image/png", "image/jpeg", "image/jpg"];
 
 const upload = multer({
   storage: multer.diskStorage({
@@ -21,7 +21,7 @@ const upload = multer({
   }),
   fileFilter: (request, file, cb) => { // filtra somente com arquivos permitidos
     if (allowedTypes.includes(file.mimetype)) {
-      return cb(null, true);
+      return cb(null, true)
     }
     cb(null, false);
     return cb(
@@ -40,7 +40,9 @@ export async function createFile(app: FastifyInstance) { //função em si
     "/files",
     { preHandler: upload.single("image") as never }, // erro de checagem :'(
     (request, reply) => {
-      return reply.code(201).send({ ok: true });
+      const { file } = request as any;
+
+      return reply.code(201).send(file);
     }
   );
 }
