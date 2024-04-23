@@ -24,14 +24,9 @@ export async function createProduct(app: FastifyInstance) {
                     where: { id: existingProduct.id },
                     data: {
                         details: {
-                            create: details.map((detail) => ({
-                                name: detail.name,
-                                price: detail.price,
-                                description: detail.description,
-                                cover: detail.cover,             //FIXME: cover precisa vir do cloudflare
-                                thumbnail: detail.thumbnail,    //FIXME: thumbnail precisa vir do cloudflare
-                                ingredients: detail.ingredients,
-                            })),
+                            createMany: {
+                                data: details
+                            },
                         },
                     },
                     include: {
@@ -43,14 +38,9 @@ export async function createProduct(app: FastifyInstance) {
                     data: {
                         title,
                         details: {
-                            create: details.map((detail) => ({
-                                name: detail.name,
-                                price: detail.price,
-                                description: detail.description,
-                                cover: detail.cover,
-                                thumbnail: detail.thumbnail,
-                                ingredients: detail.ingredients,
-                            })),
+                            createMany: {
+                                data: details
+                            },
                         },
                     },
                     include: {
