@@ -55,11 +55,4 @@ app.register(listOrder);
 app.listen({
     port: 3100,
     host: "0.0.0.0",
-}, (err, address) => {
-    if (err) {
-        console.error(err);
-        process.exit(1);
-    }
-
-    console.log(`Server listening at ${address}`);
-});
+}, () => console.log('Server is running on port 3100'));
