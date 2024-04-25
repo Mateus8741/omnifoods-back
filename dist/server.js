@@ -33,7 +33,9 @@ import fastifySwaggerUi from "@fastify/swagger-ui";
 import fastifyCors from "@fastify/cors";
 var app = fastify().withTypeProvider();
 app.register(fastifyCors, {
-  origin: "*"
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type"]
 });
 app.register(fastifySwagger, {
   swagger: {
