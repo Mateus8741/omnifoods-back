@@ -3,4 +3,9 @@ node_modules
 .env
 migrations
 database
-uploads
+
+package-lock.json
+yarn.lock
+
+# macOS
+.DS_Store
