@@ -1,26 +1,26 @@
 import {
+  createOrder
+} from "./chunk-OF64OJKM.js";
+import {
+  listOrder
+} from "./chunk-XCRR4NBF.js";
+import {
+  createFile
+} from "./chunk-M4ES2MJ2.js";
+import "./chunk-JCEUT3GH.js";
+import {
+  createProduct
+} from "./chunk-3ERNXGC5.js";
+import {
+  listProducts
+} from "./chunk-IU3Q4PXN.js";
+import {
   updateProductDetails
 } from "./chunk-EPWAOZEC.js";
 import {
   updateTitle
 } from "./chunk-YUTGEPQ6.js";
-import {
-  createFile
-} from "./chunk-M4ES2MJ2.js";
-import {
-  createOrder
-} from "./chunk-OF64OJKM.js";
-import "./chunk-JCEUT3GH.js";
-import {
-  listOrder
-} from "./chunk-XCRR4NBF.js";
-import {
-  createProduct
-} from "./chunk-3ERNXGC5.js";
 import "./chunk-JBQHQ5HM.js";
-import {
-  listProducts
-} from "./chunk-IU3Q4PXN.js";
 import "./chunk-TVWJO2T5.js";
 import "./chunk-5HTTFJTC.js";
 
@@ -63,4 +63,10 @@ app.register(listOrder);
 app.listen({
   port: 3100,
   host: "0.0.0.0"
-}, () => console.log("Server is running on port 3100"));
+}, (err, address) => {
+  if (err) {
+    console.error(err);
+    process.exit(1);
+  }
+  console.log(`Server listening at ${address}`);
+});
