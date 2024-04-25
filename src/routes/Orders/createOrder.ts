@@ -5,7 +5,11 @@ import { OrderSchema } from "../../schemas/orderSchema";
 
 export async function createOrder(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().post("/order", {
-        schema: { body: OrderSchema }
+        schema: { 
+            body: OrderSchema,
+            summary: "Cria um novo pedido",
+            tags: ["Orders"],
+        }
     }, async (request, reply) => {
         const data = request.body;
 

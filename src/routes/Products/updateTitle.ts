@@ -10,7 +10,9 @@ export async function updateTitle(app: FastifyInstance) {
             body: ProductSchema.partial(),
             params: z.object({
                 id: z.string()
-            })
+            }),
+            summary: "Atualiza o título de uma única lista de produtos",
+            tags: ["Products"],
         }
     }, async (request, reply) => {
         try {

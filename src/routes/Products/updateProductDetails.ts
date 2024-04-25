@@ -12,6 +12,8 @@ export async function updateProductDetails(app: FastifyInstance) {
                 detailId: z.string(),
             }),
             body: DetailSchema.partial(),
+            summary: "Atualiza detalhes de um único produto",
+            tags: ["Products"],
         },
     }, async (request, reply) => {
         try {

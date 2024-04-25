@@ -45,10 +45,19 @@ const upload = multer({
   },
 });
 
-export async function createFile(app: FastifyInstance) {
+export async function uploadFiles(app: FastifyInstance) {
   app.withTypeProvider<ZodTypeProvider>().post(
-    "/files",
-    { preHandler: upload.fields([{ name: "Cover", maxCount: 1 }, { name: "Thumbnail", maxCount: 1 } ]) } as never,
+    "/upload-files",
+    { 
+      schema: { 
+        summary: "Faz o upload de arquivos de fotos (Cover e Thumbnail)",
+        tags: ["Files"]
+      },
+      preHandler: upload.fields([
+        { name: "Cover", maxCount: 1 }, 
+        { name: "Thumbnail", maxCount: 1 }
+      ])
+    } as never,
     (request, reply) => {
       const { files } = request as any;
 
