@@ -14,6 +14,7 @@ import fastifySwaggerUi from "@fastify/swagger-ui";
 
 import fastifyCors from "@fastify/cors";
 import { createFile } from "./routes/Products/Files/createFiles";
+import { deleteAllFiles } from "./routes/Products/Files/deleteFiles";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -46,6 +47,8 @@ app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
 
 app.register(createFile);
+app.register(deleteAllFiles);
+
 app.register(createProduct);
 app.register(listProducts);
 app.register(updateTitle);
