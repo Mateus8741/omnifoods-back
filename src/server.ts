@@ -13,6 +13,7 @@ import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 
 import fastifyCors from "@fastify/cors";
+import { deleteOrdersAfterTime } from "./routes/Orders/deleteordersAfterTime";
 import { uploadFiles } from "./routes/Products/Files/createFiles";
 import { deleteAllFiles } from "./routes/Products/Files/deleteFiles";
 
@@ -56,6 +57,8 @@ app.register(updateProductDetails);
 
 app.register(createOrder);
 app.register(listAllOrder);
+app.register(deleteOrdersAfterTime);
+
 
 app.listen({
     port: 3100,
