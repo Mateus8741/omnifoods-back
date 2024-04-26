@@ -8,12 +8,12 @@ export async function deleteOrdersAfterTime(app: FastifyInstance) {
             tags: ["Orders"],
         },
     }, async (request, reply) => {
-        const currentTime = new Date();
-        const twoHoursAgo = new Date(currentTime.getTime() - 60 * 1000);
+        const currentTime = new Date(); //precisa mudar
+
         const orders = await prisma.order.findMany({
             where: {
                 createdAt: {
-                    lt: twoHoursAgo,
+                    lt: currentTime,
                 },
             },
         });
