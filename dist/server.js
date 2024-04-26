@@ -39,7 +39,7 @@ import fastifySwaggerUi from "@fastify/swagger-ui";
 import fastifyCors from "@fastify/cors";
 var app = fastify().withTypeProvider();
 app.register(fastifyCors, {
-  origin: "*",
+  origin: "https://omnifoods-back.onrender.com",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type"]
 });
