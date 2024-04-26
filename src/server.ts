@@ -20,7 +20,7 @@ import { deleteAllFiles } from "./routes/Products/Files/deleteFiles";
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
 app.register(fastifyCors, {
-    origin: "https://omnifoods-back.onrender.com",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type"],
 });
