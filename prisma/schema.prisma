@@ -45,6 +45,6 @@ model ProductOrders {
   productName   String
   productPrice  Float
   quantity      Int
-  changeToOrder String
+  changeToOrder String @default("")
   orderId       String
 }
