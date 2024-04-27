@@ -1,7 +1,7 @@
 import {
   OrderSchema,
   ProductOrderSchema
-} from "../chunk-NTUY3D3Q.js";
+} from "../chunk-JCEUT3GH.js";
 import "../chunk-5HTTFJTC.js";
 export {
   OrderSchema,
