@@ -21,6 +21,7 @@ CREATE TABLE "Detail" (
 CREATE TABLE "Order" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "tableNumber" INTEGER NOT NULL,
+    "changeToOrder" TEXT NOT NULL,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL
 );
@@ -31,7 +32,6 @@ CREATE TABLE "ProductOrders" (
     "productName" TEXT NOT NULL,
     "productPrice" REAL NOT NULL,
     "quantity" INTEGER NOT NULL,
-    "changeToOrder" TEXT NOT NULL,
     "orderId" TEXT NOT NULL,
     CONSTRAINT "ProductOrders_orderId_fkey" FOREIGN KEY ("orderId") REFERENCES "Order" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
