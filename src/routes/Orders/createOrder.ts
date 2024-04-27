@@ -13,12 +13,11 @@ export async function createOrder(app: FastifyInstance) {
     }, async (request, reply) => {
         const data = request.body;
 
-        const { productOrders, tableNumber, changeToOrder } = data;
+        const { productOrders, tableNumber } = data;
 
         const order = await prisma.order.create({
             data: {
                 tableNumber,
-                changeToOrder,
                 createdAt: new Date(),
                 productOrders: {
                     createMany: {
