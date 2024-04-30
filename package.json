@@ -7,17 +7,21 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "tsx watch src/server.ts",
     "build": "tsup src --format esm",
-    "del:dist" : "rm -rf dist",
-    "del:cover_thumbnail" : "rm -rf ./uploads/Cover && rm -rf ./uploads/Thumbnail",
+    "del:dist": "rm -rf dist",
+    "del:cover_thumbnail": "rm -rf ./uploads/Cover && rm -rf ./uploads/Thumbnail",
     "start": "node dist/server.js",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "license": "MIT",
   "devDependencies": {
     "@types/mime": "^4.0.0",
     "@types/node": "^20.12.7",
     "prisma": "^5.12.1",
+    "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
     "tsx": "^4.7.2",
     "typescript": "^5.4.5"
