@@ -1,8 +1,9 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { z } from "zod";
-import { prisma } from "../../prisma/prisma-client";
-import { DetailSchema } from "../../schemas/productSchema";
+import { prisma } from "../../prisma/prisma-client.js";
+import { DetailSchema } from "../../schemas/productSchema.js";
+
 
 export async function updateProductDetails(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().patch("/product/:productId/details/:detailId", {

@@ -1,7 +1,8 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
-import { prisma } from "../../prisma/prisma-client";
-import { OrderSchema } from "../../schemas/orderSchema";
+import { prisma } from "../../prisma/prisma-client.js";
+import { OrderSchema } from "../../schemas/orderSchema.js";
+
 
 export async function createOrder(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().post("/order", {

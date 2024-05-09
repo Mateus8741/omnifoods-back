@@ -1,6 +1,7 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
-import { prisma } from "../../prisma/prisma-client";
+import { prisma } from "../../prisma/prisma-client.js";
+
 
 export async function listAllOrder(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().get("/list-all-orders", {

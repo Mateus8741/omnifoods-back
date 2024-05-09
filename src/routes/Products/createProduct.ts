@@ -1,7 +1,8 @@
 import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
-import { prisma } from "../../prisma/prisma-client";
-import { ProductSchema } from "../../schemas/productSchema";
+import { prisma } from "../../prisma/prisma-client.js";
+import { ProductSchema } from "../../schemas/productSchema.js";
+
 
 export async function createProduct(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().post("/product", {
