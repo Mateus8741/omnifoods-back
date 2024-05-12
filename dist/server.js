@@ -1,4 +1,7 @@
 import {
+  createProduct
+} from "./chunk-ZW3T2JMS.js";
+import {
   listProducts
 } from "./chunk-ZKVNQQ5M.js";
 import {
@@ -13,10 +16,10 @@ import {
 import {
   deleteAllFiles
 } from "./chunk-LZFEEC37.js";
+import "./chunk-JBQHQ5HM.js";
 import {
   createOrder
-} from "./chunk-6XK7RS35.js";
-import "./chunk-JCEUT3GH.js";
+} from "./chunk-K5GNBII7.js";
 import {
   deleteOrdersAfterTime
 } from "./chunk-NP5XCEYZ.js";
@@ -24,9 +27,9 @@ import {
   listAllOrder
 } from "./chunk-2WSY5XT2.js";
 import {
-  createProduct
-} from "./chunk-ZW3T2JMS.js";
-import "./chunk-JBQHQ5HM.js";
+  updateOrderStatus
+} from "./chunk-7FOTGTSO.js";
+import "./chunk-S3XEXRS3.js";
 import "./chunk-TVWJO2T5.js";
 
 // src/server.ts
@@ -68,6 +71,7 @@ app.register(updateTitle);
 app.register(updateProductDetails);
 app.register(createOrder);
 app.register(listAllOrder);
+app.register(updateOrderStatus);
 app.register(deleteOrdersAfterTime);
 app.listen({
   port: 3100,
