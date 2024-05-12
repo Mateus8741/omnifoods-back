@@ -1,11 +1,5 @@
 import fastify from "fastify";
 import { ZodTypeProvider, jsonSchemaTransform, serializerCompiler, validatorCompiler } from "fastify-type-provider-zod";
-import { createOrder } from "./routes/Orders/createOrder";
-import { listAllOrder } from "./routes/Orders/listOrder";
-import { createProduct } from "./routes/Products/createProduct";
-import { listProducts } from "./routes/Products/listProducts";
-import { updateProductDetails } from "./routes/Products/updateProductDetails";
-import { updateTitle } from "./routes/Products/updateTitle";
 
 import multer from "fastify-multer";
 
@@ -13,9 +7,16 @@ import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 
 import fastifyCors from "@fastify/cors";
-import { deleteOrdersAfterTime } from "./routes/Orders/deleteordersAfterTime";
-import { uploadFiles } from "./routes/Products/Files/createFiles";
-import { deleteAllFiles } from "./routes/Products/Files/deleteFiles";
+import { createOrder } from "./routes/Orders/createOrder.js";
+import { deleteOrdersAfterTime } from "./routes/Orders/deleteordersAfterTime.js";
+import { listAllOrder } from "./routes/Orders/listOrder.js";
+import { updateOrderStatus } from "./routes/Orders/updateOrder.js";
+import { uploadFiles } from "./routes/Products/Files/createFiles.js";
+import { deleteAllFiles } from "./routes/Products/Files/deleteFiles.js";
+import { createProduct } from "./routes/Products/createProduct.js";
+import { listProducts } from "./routes/Products/listProducts.js";
+import { updateProductDetails } from "./routes/Products/updateProductDetails.js";
+import { updateTitle } from "./routes/Products/updateTitle.js";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -57,6 +58,7 @@ app.register(updateProductDetails);
 
 app.register(createOrder);
 app.register(listAllOrder);
+app.register(updateOrderStatus);
 app.register(deleteOrdersAfterTime);
 
 

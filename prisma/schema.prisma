@@ -31,11 +31,18 @@ model Detail {
   ingredients String
 }
 
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  CANCELLED
+}
+
 model Order {
   id            String          @id @default(uuid())
   productOrders ProductOrders[]
   tableNumber   Int
   changeToOrder String
+  status        OrderStatus     @default(PENDING)
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
 }
