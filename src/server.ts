@@ -8,6 +8,7 @@ import fastifySwaggerUi from "@fastify/swagger-ui";
 
 import fastifyCors from "@fastify/cors";
 import { createOrder } from "./routes/Orders/createOrder.js";
+import { deleteSingleOrder } from "./routes/Orders/deleteSingleOrder.js";
 import { deleteOrdersAfterTime } from "./routes/Orders/deleteordersAfterTime.js";
 import { listAllOrder } from "./routes/Orders/listOrder.js";
 import { updateOrderStatus } from "./routes/Orders/updateOrder.js";
@@ -60,6 +61,7 @@ app.register(createOrder);
 app.register(listAllOrder);
 app.register(updateOrderStatus);
 app.register(deleteOrdersAfterTime);
+app.register(deleteSingleOrder);
 
 
 app.listen({
