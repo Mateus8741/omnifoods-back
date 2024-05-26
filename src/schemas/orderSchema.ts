@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const OrderStatusEnum = z.enum(["PENDING", "COMPLETED", "CANCELLED"]).default("PENDING");
+const OrderStatusEnum = z.enum(["PENDING", "COMPLETED", "PREPARING"]).default("PENDING");
 
 const ProductOrderSchema = z.object({
   productName: z.string(),
