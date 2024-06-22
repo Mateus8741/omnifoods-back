@@ -10,6 +10,12 @@ export async function listAllOrder(app: FastifyInstance) {
             tags: ["Orders"],
         },
     }, async (request, reply) => {
+        const userId = await request.getCurrentUserId();
+
+        if (!userId) {
+            return reply.status(401).send({ error: "Usuário não autenticado" });
+        }
+
         const data = await prisma.order.findMany({
             include: { productOrders: true },
             orderBy: { createdAt: "desc" }
