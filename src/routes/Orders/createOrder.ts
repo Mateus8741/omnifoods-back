@@ -12,12 +12,19 @@ export async function createOrder(app: FastifyInstance) {
             tags: ["Orders"],
         }
     }, async (request, reply) => {
+        const userId = await request.getCurrentUserId();
+
+        if (!userId) {
+            return reply.code(401).send({ error: "Usuário não autenticado" });
+        }
+
         const data = request.body;
 
         const { productOrders, tableNumber, changeToOrder, status } = data;
 
         const order = await prisma.order.create({
             data: {
+                userId,
                 tableNumber,
                 changeToOrder,
                 status,

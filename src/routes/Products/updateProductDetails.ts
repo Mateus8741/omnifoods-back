@@ -17,19 +17,34 @@ export async function updateProductDetails(app: FastifyInstance) {
             tags: ["Products"],
         },
     }, async (request, reply) => {
+        const userId = await request.getCurrentUserId();
+
+        if (!userId) {
+            return reply.status(401).send({ error: "Usuário não autenticado" });
+        }
+
         try {
             const { productId, detailId } = request.params;
             const updatedDetailData = request.body;
 
             const existingDetail = await prisma.detail.findUnique({
-                where: { id: detailId },
+                where: {
+                    id: detailId,
+                },
+                include: {
+                    product: true,
+                },
             });
 
             if (!existingDetail || existingDetail.productId !== productId) {
                 return reply.status(404).send({ error: "Detalhe não encontrado" });
             }
 
-            await prisma.detail.update({
+            if (existingDetail.product.userId !== userId) {
+                return reply.status(403).send({ error: "Você não tem permissão para atualizar este produto" });
+            }
+
+            await prisma.detail.updateMany({
                 where: { id: detailId },
                 data: updatedDetailData,
             });

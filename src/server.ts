@@ -6,7 +6,12 @@ import multer from "fastify-multer";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
 
+import fastifyCookie from '@fastify/cookie';
 import fastifyCors from "@fastify/cors";
+import fastifyJwt from "@fastify/jwt";
+import { auth } from "./middleware/verify-jwt.js";
+import { loginUser } from "./routes/Auth/loginUser.js";
+import { registerUser } from "./routes/Auth/registerUser.js";
 import { createOrder } from "./routes/Orders/createOrder.js";
 import { deleteSingleOrder } from "./routes/Orders/deleteSingleOrder.js";
 import { deleteOrdersAfterTime } from "./routes/Orders/deleteordersAfterTime.js";
@@ -15,11 +20,15 @@ import { updateOrderStatus } from "./routes/Orders/updateOrder.js";
 import { uploadFiles } from "./routes/Products/Files/createFiles.js";
 import { deleteAllFiles } from "./routes/Products/Files/deleteFiles.js";
 import { createProduct } from "./routes/Products/createProduct.js";
+import { deleteProduct } from "./routes/Products/deleteProduct.js";
 import { listProducts } from "./routes/Products/listProducts.js";
 import { updateProductDetails } from "./routes/Products/updateProductDetails.js";
 import { updateTitle } from "./routes/Products/updateTitle.js";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
+
+app.register(fastifyCookie)
+app.register(fastifyJwt, { secret: 'supersecret-omniF' })
 
 app.register(fastifyCors, {
     origin: "*",
@@ -48,6 +57,7 @@ app.register(multer.contentParser);
 
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
+app.register(auth)
 
 app.register(uploadFiles);
 app.register(deleteAllFiles);
@@ -56,6 +66,7 @@ app.register(createProduct);
 app.register(listProducts);
 app.register(updateTitle);
 app.register(updateProductDetails);
+app.register(deleteProduct);
 
 app.register(createOrder);
 app.register(listAllOrder);
@@ -63,6 +74,8 @@ app.register(updateOrderStatus);
 app.register(deleteOrdersAfterTime);
 app.register(deleteSingleOrder);
 
+app.register(registerUser);
+app.register(loginUser);
 
 app.listen({
     port: 3100,
