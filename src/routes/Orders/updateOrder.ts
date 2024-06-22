@@ -15,14 +15,21 @@ export async function updateOrderStatus(app: FastifyInstance) {
             tags: ["Orders"],
         }
     }, async (request, reply) => {
+        const userId = await request.getCurrentUserId();
+
         const { id } = request.params;
         const { status } = request.body;
 
         const existingOrder = await prisma.order.findUnique({
             where: { id },
         });
+
         if (!existingOrder) {
             return reply.code(404).send({ message: "Pedido não encontrado." });
+        }
+
+        if (existingOrder.userId !== userId) {
+            return reply.status(403).send({ error: "Você não tem permissão para atualizar este pedido" });
         }
 
         const updatedOrder = await prisma.order.update({

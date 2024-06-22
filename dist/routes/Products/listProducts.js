@@ -1,6 +1,6 @@
 import {
   listProducts
-} from "../../chunk-ZKVNQQ5M.js";
+} from "../../chunk-36WRFL5M.js";
 import "../../chunk-TVWJO2T5.js";
 export {
   listProducts

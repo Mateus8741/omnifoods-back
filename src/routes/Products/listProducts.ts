@@ -11,8 +11,19 @@ export async function listProducts(app:FastifyInstance) {
             tags: ["Products"],
         },
     }, async (request, reply) => {
+        const userId = await request.getCurrentUserId();
+
+        if (!userId) {
+            return reply.status(401).send({ error: "Usuário não autenticado" });
+        }
+
         const data = await prisma.product.findMany({
-            include: { details: true },
+            where: {
+                userId,
+            },
+            include: {
+                details: true,
+            },
         });
         
         return data;
