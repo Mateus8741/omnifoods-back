@@ -12,6 +12,12 @@ export async function createProduct(app: FastifyInstance) {
             tags: ["Products"],
         },
     }, async (request, reply) => {
+        const userId = await request.getCurrentUserId();
+        
+        if (!userId) {
+            return reply.status(401).send({ error: "Usuário não autenticado" });
+        }
+
         try {
             const data = request.body;
             const { title, details } = data;
@@ -26,6 +32,7 @@ export async function createProduct(app: FastifyInstance) {
                 product = await prisma.product.update({
                     where: { id: existingProduct.id },
                     data: {
+                        userId,
                         details: {
                             createMany: {
                                 data: details
@@ -40,6 +47,7 @@ export async function createProduct(app: FastifyInstance) {
                 product = await prisma.product.create({
                     data: {
                         title,
+                        userId,
                         details: {
                             createMany: {
                                 data: details

@@ -16,8 +16,14 @@ export async function updateTitle(app: FastifyInstance) {
         }
     }, async (request, reply) => {
         try {
+            const userId = await request.getCurrentUserId();
+
             const productId = request.params.id;
             const data = request.body;
+
+            if (!userId) {
+                return reply.status(401).send({ error: "Usuário não autenticado" });
+            }
             
             const existingProduct = await prisma.product.findUnique({
                 where: { id: productId },
@@ -25,6 +31,10 @@ export async function updateTitle(app: FastifyInstance) {
 
             if (!existingProduct) {
                 return reply.status(404).send({ error: "Produto não encontrado" });
+            }
+
+            if (existingProduct.userId !== userId) {
+                return reply.status(403).send({ error: "Você não tem permissão para atualizar este produto" });
             }
 
             await prisma.product.update({
