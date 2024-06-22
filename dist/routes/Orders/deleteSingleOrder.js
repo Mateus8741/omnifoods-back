@@ -1,6 +1,6 @@
 import {
   deleteSingleOrder
-} from "../../chunk-TALAYG77.js";
+} from "../../chunk-UEFQY47G.js";
 import "../../chunk-TVWJO2T5.js";
 export {
   deleteSingleOrder

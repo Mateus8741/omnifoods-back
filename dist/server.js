@@ -1,39 +1,52 @@
 import {
-  updateOrderStatus
-} from "./chunk-LIBO32GJ.js";
-import {
-  createProduct
-} from "./chunk-ZW3T2JMS.js";
-import {
-  listProducts
-} from "./chunk-ZKVNQQ5M.js";
-import {
-  updateProductDetails
-} from "./chunk-CKX2X4K4.js";
-import {
-  updateTitle
-} from "./chunk-S6RIPNJ5.js";
-import {
-  uploadFiles
-} from "./chunk-3BZBQPWH.js";
-import {
-  deleteAllFiles
-} from "./chunk-LZFEEC37.js";
-import "./chunk-JBQHQ5HM.js";
-import {
-  createOrder
-} from "./chunk-LQ7BJD3R.js";
-import "./chunk-7PKT7X3J.js";
-import {
-  deleteSingleOrder
-} from "./chunk-TALAYG77.js";
-import {
   deleteOrdersAfterTime
 } from "./chunk-NP5XCEYZ.js";
 import {
   listAllOrder
-} from "./chunk-2WSY5XT2.js";
+} from "./chunk-QY554FBM.js";
+import {
+  updateOrderStatus
+} from "./chunk-QUZZHVIG.js";
+import {
+  uploadFiles
+} from "./chunk-VVY6OK4T.js";
+import {
+  deleteAllFiles
+} from "./chunk-LZFEEC37.js";
+import {
+  registerUser
+} from "./chunk-4J3SWGQF.js";
+import {
+  createProduct
+} from "./chunk-PW5IK2OJ.js";
+import {
+  deleteProduct
+} from "./chunk-FTP7H5E6.js";
+import {
+  listProducts
+} from "./chunk-36WRFL5M.js";
+import {
+  updateProductDetails
+} from "./chunk-JOP5IEJG.js";
+import {
+  updateTitle
+} from "./chunk-ITIQPORS.js";
+import {
+  createOrder
+} from "./chunk-53V2J7GH.js";
+import {
+  deleteSingleOrder
+} from "./chunk-UEFQY47G.js";
+import "./chunk-7PKT7X3J.js";
+import "./chunk-JBQHQ5HM.js";
+import {
+  auth
+} from "./chunk-RECSMCW2.js";
+import {
+  loginUser
+} from "./chunk-DFDHBX3V.js";
 import "./chunk-TVWJO2T5.js";
+import "./chunk-VDSVYAGG.js";
 
 // src/server.ts
 import fastify from "fastify";
@@ -41,8 +54,12 @@ import { jsonSchemaTransform, serializerCompiler, validatorCompiler } from "fast
 import multer from "fastify-multer";
 import fastifySwagger from "@fastify/swagger";
 import fastifySwaggerUi from "@fastify/swagger-ui";
+import fastifyCookie from "@fastify/cookie";
 import fastifyCors from "@fastify/cors";
+import fastifyJwt from "@fastify/jwt";
 var app = fastify().withTypeProvider();
+app.register(fastifyCookie);
+app.register(fastifyJwt, { secret: "supersecret-omniF" });
 app.register(fastifyCors, {
   origin: "*",
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
@@ -66,17 +83,21 @@ app.register(fastifySwaggerUi, {
 app.register(multer.contentParser);
 app.setValidatorCompiler(validatorCompiler);
 app.setSerializerCompiler(serializerCompiler);
+app.register(auth);
 app.register(uploadFiles);
 app.register(deleteAllFiles);
 app.register(createProduct);
 app.register(listProducts);
 app.register(updateTitle);
 app.register(updateProductDetails);
+app.register(deleteProduct);
 app.register(createOrder);
 app.register(listAllOrder);
 app.register(updateOrderStatus);
 app.register(deleteOrdersAfterTime);
 app.register(deleteSingleOrder);
+app.register(registerUser);
+app.register(loginUser);
 app.listen({
   port: 3100,
   host: "0.0.0.0"
