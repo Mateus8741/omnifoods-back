@@ -51,6 +51,7 @@ export async function loginUser(app: FastifyInstance) {
 
       return reply.send({
         token,
+        email: user.email,
       })
     },
   )
