@@ -45,7 +45,7 @@ export async function loginUser(app: FastifyInstance) {
           sub: user.id,
         },
         {
-          expiresIn: 120,
+          expiresIn: '60d',
         },
       )
 

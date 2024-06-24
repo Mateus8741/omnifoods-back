@@ -1,27 +1,6 @@
 import {
-  listProducts
-} from "./chunk-36WRFL5M.js";
-import {
-  updateProductDetails
-} from "./chunk-JOP5IEJG.js";
-import {
-  updateTitle
-} from "./chunk-ITIQPORS.js";
-import {
-  auth
-} from "./chunk-RECSMCW2.js";
-import {
-  uploadFiles
-} from "./chunk-VVY6OK4T.js";
-import {
-  deleteAllFiles
-} from "./chunk-LZFEEC37.js";
-import {
-  registerUser
-} from "./chunk-4J3SWGQF.js";
-import {
   createOrder
-} from "./chunk-53V2J7GH.js";
+} from "./chunk-NESRFQNY.js";
 import {
   deleteSingleOrder
 } from "./chunk-UEFQY47G.js";
@@ -33,24 +12,45 @@ import {
 } from "./chunk-QY554FBM.js";
 import {
   updateOrderStatus
-} from "./chunk-QUZZHVIG.js";
+} from "./chunk-6GWJFBF2.js";
+import {
+  uploadFiles
+} from "./chunk-VVY6OK4T.js";
+import {
+  deleteAllFiles
+} from "./chunk-LZFEEC37.js";
+import {
+  loginUser
+} from "./chunk-ASSQY3TB.js";
+import {
+  refreshUserToken
+} from "./chunk-WVWG5SRF.js";
+import {
+  registerUser
+} from "./chunk-4J3SWGQF.js";
 import {
   createProduct
-} from "./chunk-PW5IK2OJ.js";
+} from "./chunk-EEQNT26Q.js";
 import {
   deleteProduct
 } from "./chunk-FTP7H5E6.js";
+import {
+  listProducts
+} from "./chunk-36WRFL5M.js";
+import {
+  updateProductDetails
+} from "./chunk-FQHMPE3R.js";
+import {
+  updateTitle
+} from "./chunk-YAYRG6JK.js";
+import "./chunk-TVWJO2T5.js";
+import {
+  auth
+} from "./chunk-RECSMCW2.js";
 import "./chunk-7PKT7X3J.js";
 import "./chunk-JBQHQ5HM.js";
-import {
-  loginUser
-} from "./chunk-FPRJQOJ2.js";
-import "./chunk-TVWJO2T5.js";
-import "./chunk-VDSVYAGG.js";
-import {
-  refreshUserToken
-} from "./chunk-JJ2ATXFO.js";
 import "./chunk-DGRVUTU3.js";
+import "./chunk-VDSVYAGG.js";
 
 // src/server.ts
 import fastify from "fastify";
