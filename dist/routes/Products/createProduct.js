@@ -1,8 +1,8 @@
 import {
   createProduct
-} from "../../chunk-EEQNT26Q.js";
-import "../../chunk-TVWJO2T5.js";
+} from "../../chunk-PW5IK2OJ.js";
 import "../../chunk-JBQHQ5HM.js";
+import "../../chunk-TVWJO2T5.js";
 export {
   createProduct
 };

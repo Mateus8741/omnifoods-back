@@ -1,8 +1,8 @@
 import {
   updateProductDetails
-} from "../../chunk-FQHMPE3R.js";
-import "../../chunk-TVWJO2T5.js";
+} from "../../chunk-JOP5IEJG.js";
 import "../../chunk-JBQHQ5HM.js";
+import "../../chunk-TVWJO2T5.js";
 export {
   updateProductDetails
 };
