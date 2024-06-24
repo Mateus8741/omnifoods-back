@@ -11,6 +11,7 @@ import fastifyCors from "@fastify/cors";
 import fastifyJwt from "@fastify/jwt";
 import { auth } from "./middleware/verify-jwt.js";
 import { loginUser } from "./routes/Auth/loginUser.js";
+import { refreshUserToken } from "./routes/Auth/refreshToken.js";
 import { registerUser } from "./routes/Auth/registerUser.js";
 import { createOrder } from "./routes/Orders/createOrder.js";
 import { deleteSingleOrder } from "./routes/Orders/deleteSingleOrder.js";
@@ -76,6 +77,7 @@ app.register(deleteSingleOrder);
 
 app.register(registerUser);
 app.register(loginUser);
+app.register(refreshUserToken);
 
 app.listen({
     port: 3100,
