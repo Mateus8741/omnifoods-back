@@ -23,7 +23,7 @@ export async function refreshUserToken(app: FastifyInstance) {
               sub: decoded,
             },
             {
-              expiresIn: '1m',
+              expiresIn: 120,
             },
           )
   
