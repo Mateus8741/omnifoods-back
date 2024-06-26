@@ -34,7 +34,7 @@ app.register(fastifyJwt, { secret: 'supersecret-omniF' })
 app.register(fastifyCors, {
     origin: "*",
     methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-    allowedHeaders: ["Content-Type"],
+    allowedHeaders: ["Content-Type", "Authorization"],
 });
 
 app.register(fastifySwagger, {
