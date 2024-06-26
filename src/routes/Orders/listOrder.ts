@@ -17,6 +17,7 @@ export async function listAllOrder(app: FastifyInstance) {
         }
 
         const data = await prisma.order.findMany({
+            where: { userId },
             include: { productOrders: true },
             orderBy: { createdAt: "desc" }
         });
