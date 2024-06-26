@@ -2,6 +2,7 @@ import { FastifyInstance } from "fastify";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { prisma } from "../../prisma/prisma-client.js";
 
+
 export async function listAllOrder(app: FastifyInstance) {
     app.withTypeProvider<ZodTypeProvider>().get("/list-all-orders", {
         schema: {
@@ -28,4 +29,5 @@ export async function listAllOrder(app: FastifyInstance) {
             return reply.status(500).send({ error: "Erro interno do servidor" });
         }
     });
+    
 }
