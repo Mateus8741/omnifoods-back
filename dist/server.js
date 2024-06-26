@@ -6,7 +6,7 @@ import {
 } from "./chunk-FTP7H5E6.js";
 import {
   listProducts
-} from "./chunk-36WRFL5M.js";
+} from "./chunk-UDI5GPUB.js";
 import {
   updateProductDetails
 } from "./chunk-FQHMPE3R.js";

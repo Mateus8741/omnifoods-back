@@ -11,21 +11,26 @@ export async function listProducts(app:FastifyInstance) {
             tags: ["Products"],
         },
     }, async (request, reply) => {
-        const userId = await request.getCurrentUserId();
+        try {
+            const userId = await request.getCurrentUserId();
 
-        if (!userId) {
-            return reply.status(401).send({ error: "Usuário não autenticado" });
+            if (!userId) {
+                return reply.status(401).send({ error: "Usuário não autenticado" });
+            }
+
+            const data = await prisma.product.findMany({
+                where: {
+                    userId,
+                },
+                include: {
+                    details: true,
+                },
+            });
+            
+            return reply.send(data);
+        } catch (error) {
+            console.error("Erro ao listar produtos:", error);
+            return reply.status(500).send({ error: "Erro interno do servidor" });
         }
-
-        const data = await prisma.product.findMany({
-            where: {
-                userId,
-            },
-            include: {
-                details: true,
-            },
-        });
-        
-        return data;
     });
 }
